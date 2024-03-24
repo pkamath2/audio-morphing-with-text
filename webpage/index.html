@@ -1,0 +1,423 @@
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- <link href="lib/bootstrap-extension-5.3.0/css/bootstrap-extension.min.css" rel="stylesheet"> -->
+    <title>Example-Based Framework for Perceptually Guided Audio Texture Generation</title>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            width: 100%;
+            /* font-family: 'Montserrat', Arial, Helvetica, sans-serif; */
+        }
+
+        @media only screen and (max-width: 1200px) {
+            audio {
+                width: 110%;
+            }
+        }
+
+        @media only screen and (min-width: 1201px) and (max-width: 3000px) {
+            audio {
+                width: 99%;
+            }
+        }
+
+        .pipe-content {
+            border-right: solid lightgray 2px;
+        }
+
+        .bg-topbar {}
+
+        .sub-headings {
+            /* text-decoration: underline #0D6EFD; */
+            font-weight: bold;
+        }
+
+        .example-headings {
+            font-weight: bold;
+        }
+
+        .table-center-align {
+            text-align: center;
+        }
+
+        .dashed-boder {
+            border-bottom: solid lightgray 2px;
+            border-style: dashed;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+        }
+
+        .reduced-img-size {
+            width: 60%;
+        }
+
+        .label-large {
+            font-size: larger;
+            font-weight: 600;
+            /* text-decoration: underline; */
+        }
+
+        .greyout {
+            opacity: 0.4;
+            filter: alpha(opacity=40);
+            /* msie */
+            background-color: floralwhite;
+        }
+
+        .div {
+            border: solid black 1px;
+        }
+    </style>
+    <script>
+        function scrollToTheTop() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <div class="container-fluid" style="width: 100%">
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class="col-1 m-0">
+                &nbsp;
+            </div>
+            <div class="col-10 text-center p-1" style="border: solid darkgray 2px;">
+                <i>Supplementary Webpage For</i>
+                <h2><b>Interactive Audio Morphing with <br />Diffusion-based Text-to-Audio Models</b>
+                </h2>
+                <br />
+            </div>
+            <div class="col-3">
+                &nbsp;
+            </div>
+        </div>
+        <div class='row p-0 m-0'>
+            <div class='col-1'>&nbsp;</div>
+            <div class='col-10 text-center' style="font-size:smaller"><i>(Webpage best viewed on Chrome or Firefox. For
+                    screens smaller than 1200px please use Firefox only.)</i></div>
+            <div class='col-1'>&nbsp;</div>
+        </div>
+    </div>
+
+    <div class="container-fluid" style="width: 100%">
+
+        <div class="row">
+            <div class="col-1">
+                &nbsp;
+            </div>
+            <div class="col-10 h4 text-center pt-2">
+                <video width="70%" controls>
+                    <source
+                        src="resources/videos/demo_video.mp4"
+                        type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <br/>
+                <span class="text-center h6">Demo Video - Work In Progress</span>
+            </div>
+            <div class="col-1">
+                &nbsp;
+            </div>
+        </div>
+        <div class="row">&nbsp;</div>
+
+
+        <!--Index-->
+        <div class="row">
+            <div class="col-1">
+                &nbsp;
+            </div>
+            <div class="col-10 h6 text-start pt-2" id="index">
+                <u class="h4"><b>Index</b></u>
+
+                <ul>
+                    <li class="pt-2"><a href="#qualitative_results">1. Qualitative Results</a></li>
+                    <ul>
+                        <li class="pt-2"><a href="#word_weight_samples">1.1 Semantic Word Weighting</a></li>
+                        <li class="pt-2"><a href="#morph_samples">1.2 Audio Morphing</a></li>
+
+                    </ul>
+                    <li class="pt-2"><a href="#qualitative_results">2. Interaction algorithm notebooks (WIP)</a></li>
+                    <ul>
+                        <li class="pt-2"><a href="#word_weight_samples" target="_blank">2.1 Google Colaborator for Semantic Word Weighting (WIP)</a></li>
+                        <li class="pt-2"><a href="#morph_samples" target="_blank">2.2 Google Colaborator for Audio Morphing (WIP)</a></li>
+
+                    </ul>
+                    <li class="pt-2"><a href="http://" target="_blank">3. Human Listening Evaluation (via Qualtrics)</a></li>
+                </ul>
+            </div>
+            <div class="col-1">
+                &nbsp;
+            </div>
+        </div>
+        <div class="row">&nbsp;</div>
+
+
+
+
+        <!--Qualitative Results-->
+        <div class="row">
+            <div class="col-1">
+                &nbsp;
+            </div>
+            <div class="col-10 h4 text-start pt-2" id="qualitative_results">
+                <b>1. Qualitative Results</b>
+            </div>
+            <div class="col-1">
+                &nbsp;
+            </div>
+        </div>
+        <div class="row">&nbsp;</div>
+
+        <div class="row">
+            <div class="col-1">
+                &nbsp;
+            </div>
+            <div class="col-10 h5 text-start pt-2 ps-4" id="word_weight_samples">
+                <u><b>1.1 Semantic Word Weighting</b></u>
+            </div>
+            <div class="col-1">
+                &nbsp;
+            </div>
+        </div>
+        <div class="row">&nbsp;</div>
+
+
+
+
+        <div class="row">Adjective Edits</div>
+        <div class="row">
+            <div class="col-1">
+                &nbsp;
+            </div>
+            <div class="col-10 pt-2">
+                <div class="row">
+                    <div class="p-0 col-2">
+                        <img src="resources/webpage_samples_images/reweighting/adjective_edits/A_dog_barking_with_reverb_42_-2.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/reweighting/adjective_edits/A_dog_barking_with_reverb_42_-2.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-0 col-2">
+                        <img src="resources/webpage_samples_images/reweighting/adjective_edits/A_dog_barking_with_reverb_42_-1.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/reweighting/adjective_edits/A_dog_barking_with_reverb_42_-1.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-0 col-2">
+                        <img src="resources/webpage_samples_images/reweighting/adjective_edits/A_dog_barking_with_reverb_42_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/reweighting/adjective_edits/A_dog_barking_with_reverb_42_0.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-0 col-2">
+                        <img src="resources/webpage_samples_images/reweighting/adjective_edits/A_dog_barking_with_reverb_42_1.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/reweighting/adjective_edits/A_dog_barking_with_reverb_42_1.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-0 col-2">
+                        <img src="resources/webpage_samples_images/reweighting/adjective_edits/A_dog_barking_with_reverb_42_2.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/reweighting/adjective_edits/A_dog_barking_with_reverb_42_2.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-0 col-2">
+                        <img src="resources/webpage_samples_images/reweighting/adjective_edits/A_dog_barking_with_reverb_42_3.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/reweighting/adjective_edits/A_dog_barking_with_reverb_42_3.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-1">
+                &nbsp;
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1">
+                &nbsp;
+            </div>
+            <div class="col-10 pt-2">
+                <div class="row">
+                    <div class="p-0 col-2">
+                        <img src="resources/webpage_samples_images/reweighting/adjective_edits/A_frightening_thriller_43_-2.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/reweighting/adjective_edits/A_frightening_thriller_43_-2.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-0 col-2">
+                        <img src="resources/webpage_samples_images/reweighting/adjective_edits/A_frightening_thriller_43_-1.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/reweighting/adjective_edits/A_frightening_thriller_43_-1.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-0 col-2">
+                        <img src="resources/webpage_samples_images/reweighting/adjective_edits/A_frightening_thriller_43_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/reweighting/adjective_edits/A_frightening_thriller_43_0.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-0 col-2">
+                        <img src="resources/webpage_samples_images/reweighting/adjective_edits/A_frightening_thriller_43_1.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/reweighting/adjective_edits/A_frightening_thriller_43_1.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-0 col-2">
+                        <img src="resources/webpage_samples_images/reweighting/adjective_edits/A_frightening_thriller_43_2.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/reweighting/adjective_edits/A_frightening_thriller_43_2.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-0 col-2">
+                        <img src="resources/webpage_samples_images/reweighting/adjective_edits/A_frightening_thriller_43_3.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/reweighting/adjective_edits/A_frightening_thriller_43_3.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-1">
+                &nbsp;
+            </div>
+        </div>
+
+
+
+
+        <div class="row">&nbsp;</div>
+        <div class="row">&nbsp;</div>
+        <div class="row">&nbsp;</div>
+
+
+        <div class="row">Verb Edits</div>
+        <div class="row">
+            <div class="col-1">
+                &nbsp;
+            </div>
+            <div class="col-10 pt-2">
+                <div class="row">
+                    <div class="p-0 col-2">
+                        <img src="resources/webpage_samples_images/reweighting/verb_edits/A_crying_baby_42_-2.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/reweighting/verb_edits/A_crying_baby_42_-2.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-0 col-2">
+                        <img src="resources/webpage_samples_images/reweighting/verb_edits/A_crying_baby_42_-1.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/reweighting/verb_edits/A_crying_baby_42_-1.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-0 col-2">
+                        <img src="resources/webpage_samples_images/reweighting/verb_edits/A_crying_baby_42_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/reweighting/verb_edits/A_crying_baby_42_0.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-0 col-2">
+                        <img src="resources/webpage_samples_images/reweighting/verb_edits/A_crying_baby_42_1.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/reweighting/verb_edits/A_crying_baby_42_1.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-0 col-2">
+                        <img src="resources/webpage_samples_images/reweighting/verb_edits/A_crying_baby_42_2.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/reweighting/verb_edits/A_crying_baby_42_2.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-0 col-2">
+                        <img src="resources/webpage_samples_images/reweighting/verb_edits/A_crying_baby_42_3.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/reweighting/verb_edits/A_crying_baby_42_3.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-1">
+                &nbsp;
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1">
+                &nbsp;
+            </div>
+            <div class="col-10 pt-2">
+                <div class="row">
+                    <div class="p-0 col-2">
+                        <img src="resources/webpage_samples_images/reweighting/verb_edits/A_laughing_baby_42_-2.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/reweighting/verb_edits/A_laughing_baby_42_-2.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-0 col-2">
+                        <img src="resources/webpage_samples_images/reweighting/verb_edits/A_laughing_baby_42_-1.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/reweighting/verb_edits/A_laughing_baby_42_-1.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-0 col-2">
+                        <img src="resources/webpage_samples_images/reweighting/verb_edits/A_laughing_baby_42_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/reweighting/verb_edits/A_laughing_baby_42_0.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-0 col-2">
+                        <img src="resources/webpage_samples_images/reweighting/verb_edits/A_laughing_baby_42_1.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/reweighting/verb_edits/A_laughing_baby_42_1.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-0 col-2">
+                        <img src="resources/webpage_samples_images/reweighting/verb_edits/A_laughing_baby_42_2.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/reweighting/verb_edits/A_laughing_baby_42_2.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-0 col-2">
+                        <img src="resources/webpage_samples_images/reweighting/verb_edits/A_laughing_baby_42_3.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/reweighting/verb_edits/A_laughing_baby_42_3.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-1">
+                &nbsp;
+            </div>
+        </div>
+
+
+
+
+        
+    </div>
+</body>
