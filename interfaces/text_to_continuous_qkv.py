@@ -161,64 +161,9 @@ def main():
     with col2:
         vert_space = '<div style="padding: 25%;">&nbsp;</div>'
         st.markdown(vert_space, unsafe_allow_html=True)
-        # st.button("**Generate** =>", on_click=sample_diffusion(latent_diffusion), type='primary')
     with col3:
         st.image(s_spec)
         st.audio(s_wav, format="audio/wav", start_time=0, sample_rate=16000)
-    # with col1:
-    #     st.markdown("<h3 style='text-align: center;'>Left</h3>", unsafe_allow_html=True)
-    #     st.text_input(label="Source Text", key="source_text", value="", label_visibility='hidden')
-
-    #     source_image_placeholder = st.empty()
-    #     source_audio_placeholder = st.empty()
-    #     st.session_state['source_image_placeholder'] = source_image_placeholder
-    #     st.session_state['source_audio_placeholder'] = source_audio_placeholder
-    #     if 'source_image_placeholder_img' in st.session_state:
-    #         source_image_placeholder.image(st.session_state['source_image_placeholder_img'])
-    #     if 'source_audio_placeholder_wav' in st.session_state:
-    #         source_audio_placeholder.audio(st.session_state['source_audio_placeholder_wav'], format="audio/wav", start_time=0, sample_rate=16000)
-        
-    #     st.button("Generate Left Target", on_click=generate_left_target(latent_diffusion), type='secondary', key="generate_left_button", use_container_width=True)
-        
-    # with col2:
-    #     st.markdown("<br/>", unsafe_allow_html=True)
-
-    # with col3:
-    #     st.markdown("<h3 style='text-align: center;'></h3>", unsafe_allow_html=True)
-    #     slider_position=st.slider('Interpolation Level', min_value=0.0, max_value=1.0, value=0.0, step=0.1, label_visibility="hidden",  \
-    #                               format=None, key='interpolation_level', disabled=False)
-    #     st.markdown("<br/>", unsafe_allow_html=True)
-        
-    #     morph_image_placeholder = st.empty()
-    #     morph_audio_placeholder = st.empty()
-    #     st.session_state['morph_image_placeholder'] = morph_image_placeholder
-    #     st.session_state['morph_audio_placeholder'] = morph_audio_placeholder
-    #     if 'morph_image_placeholder_img' in st.session_state:
-    #         morph_image_placeholder.image(st.session_state['morph_image_placeholder_img'])
-    #     if 'morph_audio_placeholder_wav' in st.session_state:
-    #         morph_audio_placeholder.audio(st.session_state['morph_audio_placeholder_wav'], format="audio/wav", start_time=0, sample_rate=16000)
-
-
-    #     st.button("Generate Morph", on_click=generate_morph(latent_diffusion), type='primary', key="generate_morph_button", use_container_width=True)
-
-    # with col4:
-    #     st.markdown("<br/>", unsafe_allow_html=True)
-
-    # with col5:
-    #     st.markdown("<h3 style='text-align: center;'>Right</h3>", unsafe_allow_html=True)
-    #     st.text_input(label="Target Text", key="target_text", value="", label_visibility="hidden")
-
-    #     target_image_placeholder = st.empty()
-    #     target_audio_placeholder = st.empty()
-    #     st.session_state['target_image_placeholder'] = target_image_placeholder
-    #     st.session_state['target_audio_placeholder'] = target_audio_placeholder
-    #     if 'target_image_placeholder_img' in st.session_state:
-    #         target_image_placeholder.image(st.session_state['target_image_placeholder_img'])
-    #     if 'target_audio_placeholder_wav' in st.session_state:
-    #         target_audio_placeholder.audio(st.session_state['target_audio_placeholder_wav'], format="audio/wav", start_time=0, sample_rate=16000)
-
-    #     st.button("Generate Right Target", on_click=generate_right_target(latent_diffusion), type='secondary', key="generate_right_button", use_container_width=True)
-
 
     st.markdown('<div style="text-align:center;color:white"><i>All audio samples on this page are generated with a sampling rate of 16kHz.</i></div>', unsafe_allow_html=True)
 
