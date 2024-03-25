@@ -2,7 +2,7 @@
 
 This project is part of a paper titled "Interactive Audio Morphing w/ Diffusion-based Text-to-Audio Models" under review.
 
-<p class="text-center" style="text-align:center">[Paper]() | [Demo Webpage]() | [Citation](#citation)</p>
+[Paper]() | [Demo Webpage]() | [Citation](#citation)
 
 <img src='resources/screenshot-morph.png' style="background-color: #cccccc">
 
