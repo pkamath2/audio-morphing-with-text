@@ -20,7 +20,7 @@ This repo is based on the AudioLDM codebase. We use the pre-trained model labele
 
 ### Setup
 * Clone this repo
-* Install dependencies (from) original AudioLDM repo as shown below) by creating a new conda environment called ```interactive-audio-morphing```
+* Install dependencies (from the original AudioLDM repo as shown below) by creating a new conda environment called ```interactive-audio-morphing```
 ```
 conda create -n interactive-audio-morphing python=3.8; conda activate interactive-audio-morphing
 pip3 install git+https://github.com/haoheliu/AudioLDM2.git
