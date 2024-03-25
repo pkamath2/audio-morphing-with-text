@@ -24,7 +24,7 @@ This repo is based on the AudioLDM codebase. We use the pre-trained model labele
 ```
 conda create -n interactive-audio-morphing python=3.8; conda activate interactive-audio-morphing
 pip3 install git+https://github.com/haoheliu/AudioLDM2.git
-pip3 install streamlit
+pip3 install streamlit==1.31.1
 ```
 Add the newly created environment to Jupyter Notebooks
 ```
