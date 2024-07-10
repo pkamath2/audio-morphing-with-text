@@ -1,0 +1,543 @@
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- <link href="lib/bootstrap-extension-5.3.0/css/bootstrap-extension.min.css" rel="stylesheet"> -->
+    <title>MorphFader: Enabling Fine-Grained Semantic Control for Audio Morphing through Fader-like Interactions</title>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            width: 100%;
+            /* font-family: 'Montserrat', Arial, Helvetica, sans-serif; */
+        }
+
+        @media only screen and (max-width: 1200px) {
+            audio {
+                width: 110%;
+            }
+        }
+
+        @media only screen and (min-width: 1201px) and (max-width: 3000px) {
+            audio {
+                width: 99%;
+            }
+        }
+
+        .pipe-content {
+            border-right: solid lightgray 2px;
+        }
+
+        .bg-topbar {}
+
+        .sub-headings {
+            /* text-decoration: underline #0D6EFD; */
+            font-weight: bold;
+        }
+
+        .example-headings {
+            font-weight: bold;
+        }
+
+        .table-center-align {
+            text-align: center;
+        }
+
+        .dashed-boder {
+            border-bottom: solid lightgray 2px;
+            border-style: dashed;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+        }
+
+        .reduced-img-size {
+            width: 60%;
+        }
+
+        .label-large {
+            font-size: larger;
+            font-weight: 600;
+            /* text-decoration: underline; */
+        }
+
+        .greyout {
+            opacity: 0.4;
+            filter: alpha(opacity=40);
+            /* msie */
+            background-color: floralwhite;
+        }
+
+        .div {
+            border: solid black 1px;
+        }
+    </style>
+    <script>
+        function scrollToTheTop() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <div class="container-fluid" style="width: 100%">
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class="col-1 m-0">
+                &nbsp;
+            </div>
+            <div class="col-10 text-center p-1" style="border: solid darkgray 2px;">
+                <i>Supplementary Webpage For</i>
+                <h2><b>MorphFader: Enabling Fine-Grained Semantic Control for <br/>Audio Morphing through Fader-like Interactions</b>
+                </h2>
+                <br />
+            </div>
+            <div class="col-3">
+                &nbsp;
+            </div>
+        </div>
+        <div class='row p-0 m-0'>
+            <div class='col-1'>&nbsp;</div>
+            <div class='col-10 text-center' style="font-size:smaller"><i>(Webpage best viewed on Chrome or Firefox. For
+                    screens smaller than 1200px please use Firefox only.)</i></div>
+            <div class='col-1'>&nbsp;</div>
+        </div>
+    </div>
+
+    <div class="container-fluid" style="width: 100%">
+
+        <!--Qualitative Results-->
+        <div class="row">
+            <div class="col-1">
+                &nbsp;
+            </div>
+            <div class="col-10 h4 text-center pt-2" id="qualitative_results">
+                <b>Audio Morphing: Comparing MorphFader, Waveform Mixing, and Trivial Prompting for Linearity or Smoothness while morphing.</b>
+            </div>
+            <div class="col-1">
+                &nbsp;
+            </div>
+        </div>
+        <div class="row">&nbsp;</div>
+        
+         <!--Index-->
+         <div class="row">
+            <div class="col-1">
+                &nbsp;
+            </div>
+            <div class="col-10 h6 text-start pt-2" id="index">
+                On this page, we compare generating morphs using our method to morphs generated using two other baselines - (1) Mixing raw audio waveforms, and (2) trivial prompting.<br/>
+                <br/>
+                <br/>
+            </div>
+            <div class="col-1">
+                &nbsp;
+            </div>
+        </div>
+
+
+        <div class="row" id="verbs">
+            <div class="col-1">
+                &nbsp;
+            </div>
+            <div class="col-8 text-start h6">
+                Each sample below morphs from a source prompt to a target prompt. The source prompt is on the left and the target prompt is on the right. 
+                The audio samples are generated by morphing between the source and target prompts in steps of 0.25. 
+            </div>
+            <div class="col-1">
+                &nbsp;
+            </div>
+        </div>
+
+        <div class="row">&nbsp;</div>
+
+        <div class="row" id="verbs">
+            <div class="col-1">
+                &nbsp;
+            </div>
+            <div class="col-8 text-start h6">
+                We find that the sound generated by mixing waveforms or making trivial edits to the text in the prompt do not produce smooth morphs. 
+                <br/>
+                <br/>
+            </div>
+            <div class="col-1">
+                &nbsp;
+            </div>
+        </div>
+        <div class="row">&nbsp;</div>
+
+        <div class="row">
+            <div class="col-1">
+                &nbsp;
+            </div>
+            <div class="col-10 pt-2">
+                <div class="row">
+                    <div class="col-10 pt-2 h6">
+                        <b><u>Example 1</u></b>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-10 pt-2">
+                        <b>Source Prompt:</b> A baby sadly crying<br/>
+                        <b>Target Prompt:</b> A trumpet happily playing<br/>
+                        <br/>
+                        Observe how morphs generated using our method are smoother and gradually change to the target sound than those generated using waveform mixing or trivial prompting. 
+                        <br/>
+                        <br/>
+                        <div><b>Note:</b> Sounds with &alpha;=0 and &alpha;=1 are generated simply using the source and target prompts indicated by green box. </div>
+                        <br/>
+                    </div>
+                </div>
+                <div class="row">
+                    
+                    <div class="col-1 text-center" style="padding-top:2%">
+                        <br/><b>MorphFader</b><br/><br/>
+                    </div>
+                    <div class=" p-1 col-2 text-center"  style="border:solid teal 2px;">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/A_baby_sadly_crying_1017.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/A_baby_sadly_crying_1017.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-1 col-2 text-center">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/A_baby_sadly_crying_to_A_trumpet_happily_playing_1017_0.25_ours.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/A_baby_sadly_crying_to_A_trumpet_happily_playing_1017_0.25_ours.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-1 col-2 text-center">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/A_baby_sadly_crying_to_A_trumpet_happily_playing_1017_0.5_ours.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/A_baby_sadly_crying_to_A_trumpet_happily_playing_1017_0.5_ours.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-1 col-2 text-center">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/A_baby_sadly_crying_to_A_trumpet_happily_playing_1017_0.75_ours.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/A_baby_sadly_crying_to_A_trumpet_happily_playing_1017_0.75_ours.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-1 col-2 text-center" style="border:solid teal 2px;">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/A_trumpet_happily_playing_1017.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/A_trumpet_happily_playing_1017.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                </div>
+                <div class="row">
+                    &nbsp;
+                </div>
+                <div class="row">
+                    <div class="col-1 text-center">
+                    </div>
+                    
+                    <div class="col-10 text-left">
+                        For generating morphs with prompts we use prompts such as - <br/> "A morph between a baby sadly crying and a trumpet happily playing 
+                        where the baby sadly crying is represented at a level &lt;X&gt;% and trumpet happily playing is 
+                        represented at &lt;100-X&gt;%" to generate morphs.
+                    </div>
+                    <div class="col-1 text-center">
+                    </div>
+
+                </div>
+                <div class="row">
+                    
+                    <div class="col-1 text-center" style="padding-top:2%">
+                        <br/><b>Prompting</b><br/><br/>
+                    </div>
+                    <div class=" p-1 col-2 text-center" style="border:solid teal 2px;">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/A_baby_sadly_crying_1017.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/A_baby_sadly_crying_1017.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-1 col-2 text-center">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/A_baby_sadly_crying_to_A_trumpet_happily_playing_1017_0.25_prompting.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/A_baby_sadly_crying_to_A_trumpet_happily_playing_1017_0.25_prompting.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-1 col-2 text-center">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/A_baby_sadly_crying_to_A_trumpet_happily_playing_1017_0.5_prompting.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/A_baby_sadly_crying_to_A_trumpet_happily_playing_1017_0.5_prompting.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-1 col-2 text-center">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/A_baby_sadly_crying_to_A_trumpet_happily_playing_1017_0.75_prompting.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/A_baby_sadly_crying_to_A_trumpet_happily_playing_1017_0.75_prompting.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-1 col-2 text-center" style="border:solid teal 2px;">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/A_trumpet_happily_playing_1017.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/A_trumpet_happily_playing_1017.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                </div>
+                <div class="row">
+                    
+                    <div class="col-1 text-center" style="padding-top:2%">
+                        <br/><b>Waveform Mixing</b><br/><br/>
+                    </div>
+                    <div class=" p-1 col-2 text-center" style="border:solid teal 2px;">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/A_baby_sadly_crying_1017.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/A_baby_sadly_crying_1017.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-1 col-2 text-center">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/A_baby_sadly_crying_to_A_trumpet_happily_playing_1017_0.25_waveformmix.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/A_baby_sadly_crying_to_A_trumpet_happily_playing_1017_0.25_waveformmix.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-1 col-2 text-center">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/A_baby_sadly_crying_to_A_trumpet_happily_playing_1017_0.5_waveformmix.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/A_baby_sadly_crying_to_A_trumpet_happily_playing_1017_0.5_waveformmix.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-1 col-2 text-center">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/A_baby_sadly_crying_to_A_trumpet_happily_playing_1017_0.75_waveformmix.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/A_baby_sadly_crying_to_A_trumpet_happily_playing_1017_0.75_waveformmix.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-1 col-2 text-center" style="border:solid teal 2px;">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/A_trumpet_happily_playing_1017.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/A_trumpet_happily_playing_1017.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-1">
+                &nbsp;
+            </div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">&nbsp;</div>
+        <div class="row">&nbsp;</div>
+
+
+
+
+
+        <div class="row">
+            <div class="col-1">
+                &nbsp;
+            </div>
+            <div class="col-10 pt-2">
+                <div class="row">
+                    <div class="col-10 pt-2 h6">
+                        <b><u>Example 2</u></b>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-10 pt-2">
+                        <b>Source Prompt:</b> Howling wolf<br/>
+                        <b>Target Prompt:</b> Singing choir<br/>
+                        <br/>
+                        Observe how morphs generated using our method are smoother and gradually change to the target sound than those generated using waveform mixing or trivial prompting. 
+                        <br/>
+                        <br/>
+                        <div><b>Note:</b> Sounds with &alpha;=0 and &alpha;=1 are generated simply using the source and target prompts indicated by green box. </div>
+                        <br/>
+
+                    </div>
+                </div>
+                <div class="row">
+                    
+                    <div class="col-1 text-center" style="padding-top:2%">
+                        <br/><b>MorphFader</b><br/><br/>
+                    </div>
+                    <div class=" p-1 col-2 text-center" style="border:solid teal 2px;">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/howling_wolf_1947.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/howling_wolf_1947.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-1 col-2 text-center">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/howling_wolf_to_singing_choir_1947_0.25_ours.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/howling_wolf_to_singing_choir_1947_0.25_ours.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-1 col-2 text-center">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/howling_wolf_to_singing_choir_1947_0.5_ours.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/howling_wolf_to_singing_choir_1947_0.5_ours.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-1 col-2 text-center">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/howling_wolf_to_singing_choir_1947_0.75_ours.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/howling_wolf_to_singing_choir_1947_0.75_ours.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-1 col-2 text-center"  style="border:solid teal 2px;">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/singing_choir_1947.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/singing_choir_1947.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                </div>
+                <div class="row">
+                    &nbsp;
+                </div>
+                <div class="row">
+                    <div class="col-1 text-center">
+                    </div>
+                    
+                    <div class="col-10 text-left">
+                        For generating morphs with prompts we use prompts such as - <br/> "A morph between a baby sadly crying and a trumpet happily playing 
+                        where the baby sadly crying is represented at a level &lt;X&gt;% and trumpet happily playing is 
+                        represented at &lt;100-X&gt;%" to generate morphs.
+                    </div>
+                    <div class="col-1 text-center">
+                    </div>
+
+                </div>
+                <div class="row">
+                    
+                    <div class="col-1 text-center" style="padding-top:2%">
+                        <br/><b>Prompting</b><br/><br/>
+                    </div>
+                    <div class=" p-1 col-2 text-center" style="border:solid teal 2px;">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/howling_wolf_1947.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/howling_wolf_1947.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-1 col-2 text-center">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/howling_wolf_to_singing_choir_1947_0.25_prompting.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/howling_wolf_to_singing_choir_1947_0.25_prompting.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-1 col-2 text-center">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/howling_wolf_to_singing_choir_1947_0.5_prompting.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/howling_wolf_to_singing_choir_1947_0.5_prompting.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-1 col-2 text-center">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/howling_wolf_to_singing_choir_1947_0.75_prompting.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/howling_wolf_to_singing_choir_1947_0.75_prompting.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-1 col-2 text-center"  style="border:solid teal 2px;">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/singing_choir_1947.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/singing_choir_1947.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                </div>
+                <div class="row">
+                    
+                    <div class="col-1 text-center" style="padding-top:2%">
+                        <br/><b>Waveform Mixing</b><br/><br/>
+                    </div>
+                    <div class=" p-1 col-2 text-center"  style="border:solid teal 2px;">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/howling_wolf_1947.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/howling_wolf_1947.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-1 col-2 text-center">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/howling_wolf_to_singing_choir_1947_0.25_waveformmix.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/howling_wolf_to_singing_choir_1947_0.25_waveformmix.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-1 col-2 text-center">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/howling_wolf_to_singing_choir_1947_0.5_waveformmix.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/howling_wolf_to_singing_choir_1947_0.5_waveformmix.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-1 col-2 text-center">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/howling_wolf_to_singing_choir_1947_0.75_waveformmix.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/howling_wolf_to_singing_choir_1947_0.75_waveformmix.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                    <div class=" p-1 col-2 text-center"  style="border:solid teal 2px;">
+                        <img src="resources/webpage_samples_images/baseline_linearity_comparison/singing_choir_1947.wav_0.png" width="100%" />
+                        <audio controls="" preload="auto">
+                            <source src="resources/webpage_samples/baseline_linearity_comparison/singing_choir_1947.wav" type="audio/wav" />
+                        </audio>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-1">
+                &nbsp;
+            </div>
+        </div>
+
+
+
+
+
+
+        
+        <div class="row">&nbsp;</div>
+        <div class="row">&nbsp;</div>
+        <div class="row">&nbsp;</div>
+
+
+
+        
+        <div class="row">&nbsp;</div>
+        <div class="row">&nbsp;</div>
+        <div class="row">&nbsp;</div>
+
+
+       
+
+
+        
+        <div class="row">&nbsp;</div>
+        <div class="row">&nbsp;</div>
+        <div class='row'>
+            <div class='col-2'>
+                &nbsp;
+            </div>
+            <div class='col-8 table-center-align dashed-boder'>
+                <a href="javascript:scrollToTheTop()">Back to top</a>
+            </div>
+            <div class='col-2'>
+                &nbsp;
+            </div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">&nbsp;</div>
+
+
+
+
+        
+    </div>
+</body>
