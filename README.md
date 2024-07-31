@@ -1,7 +1,7 @@
 # MorphFader: Enabling Fine-Grained Semantic Control for Text-to-Audio Morphing through Fader-like Interactions
 
 
-This project is part of a paper titled "MorphFader: Enabling Fine-Grained Semantic Control for Text-to-Audio Morphing through Fader-like Interactions" under review.
+This project is part of a paper titled "MorphFader: Enabling Fine-grained Controllable Morphing with Text-to-Audio Models" under review.
 
 [Paper]() | [Demo Webpage]() | [Citation](#citation)
 
