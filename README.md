@@ -1,7 +1,7 @@
 # MorphFader: Enabling Fine-Grained Semantic Control for Text-to-Audio Morphing through Fader-like Interactions
 
 
-This project is part of a paper titled "MorphFader: Enabling Fine-grained Controllable Morphing with Text-to-Audio Models" under review.
+This project is part of a paper titled "MorphFader: Enabling Fine-grained Controllable Morphing with Text-to-Audio Models" accepted for publication at ICASSP 2025.
 
 [Paper](https://arxiv.org/pdf/2408.07260) | [Demo Webpage](https://pkamath2.github.io/audio-morphing-with-text/webpage/index.html) | [Citation](#citation)
 
