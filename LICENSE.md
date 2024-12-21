@@ -17,4 +17,4 @@ Jonathan Tan (jonathan_tan@nus.edu.sg)
 ## Reporting unauthorized commercial use and/or further enquiries
 
 
-If you become aware of any unauthorised commercial use of this source code and models or have any questions regarding licensing terms, please contact Jonathan Tan ( jonathan_tan@nus.edu.sg ).
+If you become aware of any unauthorised commercial use of this source code or have any questions regarding licensing terms, please contact Jonathan Tan ( jonathan_tan@nus.edu.sg ).
