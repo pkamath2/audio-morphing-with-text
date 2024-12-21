@@ -6,7 +6,7 @@ For non-commercial uses and licensing of these code and models and its derivativ
 
   
 
-For commercial use and licensing of these code and models, please contact - 
+For commercial use and licensing of this code, please contact - 
 
 Purnima Kamath (purnima.kamath@u.nus.edu)  
 Chitralekha Gupta (chitralekha@nus.edu.sg)  
