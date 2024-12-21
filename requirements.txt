@@ -16,7 +16,7 @@ phonemizer
 torchlibrosa>=0.0.9
 transformers==4.30.2
 huggingface_hub
-progressbar
+progressbar2
 ftfy
 timm
 huggingface_hub
