@@ -1,6 +1,6 @@
 ## Dual Licensing Options
 
-The source code and models within this repository are dual licenced. You may choose to use it under the terms of the [GNU General Public License version 3 (GPLv3)](https://www.gnu.org/licenses/gpl-3.0.en.html#license-text) for non-commercial purposes, or you can obtain a commercial license for commercial use.
+The source code within this repository is dual licenced. You may choose to use it under the terms of the [GNU General Public License version 3 (GPLv3)](https://www.gnu.org/licenses/gpl-3.0.en.html#license-text) for non-commercial purposes, or you can obtain a commercial license for commercial use.
 
 For non-commercial uses and licensing of these code and models and its derivatives (which include academic purposes), an open-source licence is granted in accordance with the following terms and conditions - [GNU General Public License version 3 (GPLv3)](https://www.gnu.org/licenses/gpl-3.0.en.html#license-text).
 
