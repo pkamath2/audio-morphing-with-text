@@ -2,3 +2,4 @@
 **/*.DS_Store*
 **/*.DS*
 **/*.zip
+**/__pycache__/*
