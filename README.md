@@ -3,7 +3,7 @@
 
 This project is part of a paper titled "MorphFader: Enabling Fine-grained Controllable Morphing with Text-to-Audio Models" under review.
 
-[Paper]() | [Demo Webpage]() | [Citation](#citation)
+[Paper](https://arxiv.org/pdf/2408.07260) | [Demo Webpage](https://pkamath2.github.io/audio-morphing-with-text/webpage/index.html) | [Citation](#citation)
 
 <img src='resources/screenshot-morph.png' style="background-color: #cccccc">
 
@@ -56,6 +56,14 @@ You will be able to access the interfaces via browser (preferably use Chrome or 
 ### Citation
 If you use this code for your research, please cite as:
 ```
-(Audio paper under review)
+@misc{kamath2024morphfader,
+      title={MorphFader: Enabling Fine-grained Controllable Morphing with Text-to-Audio Models}, 
+      author={Purnima Kamath and Chitralekha Gupta and Suranga Nanayakkara},
+      year={2024},
+      eprint={2408.07260},
+      archivePrefix={arXiv},
+      primaryClass={eess.AS},
+      url={https://arxiv.org/abs/2408.07260}, 
+}
 ```
 
