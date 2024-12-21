@@ -37,6 +37,8 @@ Notebooks outline how to semantically weight adjective or verb descriptors in th
 
 * [Notebook to demonstrate semantic word weighting](notebooks/explore_word_weighting.ipynb)
 * [Notebook to demonstrate audio morphing between text prompts](notebooks/explore_morphing.ipynb)
+  
+Alternatively, please see our webpage for Google Colab notebooks. 
 
 
 
@@ -63,7 +65,6 @@ If you use this code for your research, please cite as:
       eprint={2408.07260},
       archivePrefix={arXiv},
       primaryClass={eess.AS},
-      url={https://arxiv.org/abs/2408.07260}, 
 }
 ```
 
