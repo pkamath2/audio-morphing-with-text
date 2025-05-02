@@ -60,13 +60,13 @@ You will be able to access the interfaces via browser (preferably use Chrome or 
 ### Citation
 If you use this code for your research, please cite as:
 ```
-@misc{kamath2024morphfader,
-      title={MorphFader: Enabling Fine-grained Controllable Morphing with Text-to-Audio Models}, 
-      author={Purnima Kamath and Chitralekha Gupta and Suranga Nanayakkara},
-      year={2024},
-      eprint={2408.07260},
-      archivePrefix={arXiv},
-      primaryClass={eess.AS},
+@inproceedings{kamath2025morphfader,
+  title={MorphFader: Enabling Fine-grained Controllable Morphing with Text-to-Audio Models},
+  author={Kamath, Purnima and Gupta, Chitralekha and Nanayakkara, Suranga},
+  booktitle={ICASSP 2025-2025 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+  pages={1--5},
+  year={2025},
+  organization={IEEE}
 }
 ```
 
